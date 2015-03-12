@@ -1,0 +1,307 @@
+/**
+ * Tsunami Tools namespace (globals)
+ */
+window.tsunami = window.tsunami || {};
+
+/**
+ * Lookup table of predefined place names
+ */
+tsunami.places = {
+	"HI": {
+		"HAWAI_I": {
+			center: "19.5597,-155.5229",
+			zoom: 8
+		},
+		"MAUI": {
+			center: "20.804,-156.378",
+			zoom: 10
+		},
+		"KAUA_I": {
+			center: "22.053,-159.489",
+			zoom: 10
+		},
+		"LANA_I": {
+			center: "20.828,-156.93",
+			zoom: 11
+		},
+		"MOLOKA_I": {
+			center: "21.133,-157.011",
+			zoom: 11
+		},
+		"NI_IHAU": {
+			center: "21.879,-160.160",
+			zoom: 10
+		},
+		"O_AHU": {
+			center: "21.462,-157.96",
+			zoom: 10
+		},
+		"O_AHU-AIRPORT TO WAIKIKI": {
+			center: "21.3091153402817,-157.920612356933",
+			zoom: 12
+		},
+		"O_AHU-EWA BEACH TO AIRPORT": {
+			center: "21.3121575590345,-158.005832138262",
+			zoom: 12
+		},
+		"HAWAI_I-HAKALAU BAY": {
+			center: "19.8992218702186,-155.130236948084",
+			zoom: 12
+		},
+		"MOLOKA_I-HALAWA": {
+			center: "21.1586012776415,-156.740619324584",
+			zoom: 12
+		},
+		"MOLOKA_I-HALENA TO KAPUKUWAHINE": {
+			center: "21.0883630900761,-157.2410118563",
+			zoom: 12
+		},
+		"MAUI-HANA": {
+			center: "20.7838373085425,-155.998338448893",
+			zoom: 12
+		},
+		"MAUI-HANAKAOO TO KAELEKII PT.": {
+			center: "20.9646128087109,-156.681192105779",
+			zoom: 12
+		},
+		"O_AHU-HANAUMA BAY TO MAKAPUU": {
+			center: "21.290168871514,-157.666814106697",
+			zoom: 12
+		},
+		"LANA_I-HAUA TO KAPOHO": {
+			center: "20.7864742772949,-156.820348605908",
+			zoom: 12
+		},
+		"O_AHU-HAUULA TO MALAEKAHANA": {
+			center: "21.6493597155986,-157.925600106938",
+			zoom: 12
+		},
+		"HAWAI_I-HILO - PART 1": {
+			center: "19.7151239012972,-155.075226635533",
+			zoom: 12
+		},
+		"HAWAI_I-HILO - PART 2": {
+			center: "19.7308461513118,-155.030327947991",
+			zoom: 12
+		},
+		"MOLOKA_I-KAALAEA TO UALAPUE": {
+			center: "21.0842217463222,-156.77961866837",
+			zoom: 12
+		},
+		"O_AHU-KAHANA BAY TO HAUULA": {
+			center: "21.5894336217928,-157.89348191940",
+			zoom: 12
+		},
+		"O_AHU-KAHE POINT TO EWA BEACH": {
+			center: "21.3415492153119,-158.125396075874",
+			zoom: 12
+		},
+		"KAUA_I-KAILIU PT. TO KALIHIWAI BAY": {
+			center: "22.224295559884,-159.458774045865",
+			zoom: 12
+		},
+		"HAWAI_I-KAILUA BAY TO KIHOLO BAY": {
+			center: "19.8321832139062,-155.983287073879",
+			zoom: 12
+		},
+		"O_AHU-KAILUA TO KANEOHE BAY": {
+			center: "21.4550503716676,-157.757039013031",
+			zoom: 12
+		},
+		"LANA_I-KAIOLOHIA BAY TO HAUA": {
+			center: "20.8871309023887,-156.86542554345",
+			zoom: 12
+		},
+		"MOLOKA_I-KALAUPAPA TO KAUPIKIAWA": {
+			center: "21.2054303714351,-156.974623512302",
+			zoom: 12
+		},
+		"MAUI-KALEIA KEALEKII PT. TO KEAWALUA": {
+			center: "21.0223089962646,-156.623147855725",
+			zoom: 12
+		},
+		"MAUI-KAMAOLE BEACH PARK TO KEALIA": {
+			center: "20.7827692772915,-156.462290574325",
+			zoom: 12
+		},
+		"MAUI-KANAHA BEACH PARK TO KUAU": {
+			center: "20.9131655586629,-156.39257666801",
+			zoom: 12
+		},
+		"O_AHU-KANEOHE BAY TO KAHANA BAY": {
+			center: "21.5572345905128,-157.857319981874",
+			zoom: 12
+		},
+		"MOLOKA_I-KAPUKAULUA TO KAUNAKAKAI": {
+			center: "21.0760296213146,-156.986627856063",
+			zoom: 12
+		},
+		"KAUA_I-KAUAPEA BEACH TO ANAHOLA BAY": {
+			center: "22.2288505286383,-159.401321920812",
+			zoom: 12
+		},
+		"LANA_I-KAUMALAPAU HARBOR": {
+			center: "20.7836116210423,-156.990546512317",
+			zoom: 12
+		},
+		"HAWAI_I-KEALAKEKUA TO KAILUA": {
+			center: "19.5042809323508,-155.950964823849",
+			zoom: 12
+		},
+		"KAUA_I-KEALIA TO ALAKUKUI PT.": {
+			center: "22.0796548409993,-159.315013389482",
+			zoom: 12
+		},
+		"MAUI-KEALIA TO UKUMEHAME BEACH PARK": {
+			center: "20.7808083710397,-156.520188293129",
+			zoom: 12
+		},
+		"HAWAI_I-KEAUHOU TO KAILUA": {
+			center: "19.6214379012099,-155.984021011379",
+			zoom: 12
+		},
+		"KAUA_I-KEONILOA BAY TO LAWAI BAY": {
+			center: "21.8861068408191,-159.490339139645",
+			zoom: 12
+		},
+		"MAUI-LAUNIUPOKO PT. TO WAHIKULI STATE WAYSIDE PARK": {
+			center: "20.8611019648644,-156.669013199517",
+			zoom: 12
+		},
+		"HAWAI_I-LAUPAHOEHOE": {
+			center: "19.9918984953049,-155.242787729439",
+			zoom: 12
+		},
+		"O_AHU-MAKAPUU TO WAIMANALO": {
+			center: "21.3279121840492,-157.689256825467",
+			zoom: 12
+		},
+		"O_AHU-MALAEKAHANA TO SUNSET BEACH": {
+			center: "21.7032780281488,-157.986438794494",
+			zoom: 12
+		},
+		"LANA_I-MANELE BAY TO KAPIHUA BAY": {
+			center: "20.7355796209975,-156.892396355975",
+			zoom: 12
+		},
+		"HAWAI_I-MILOLII TO KEALAKEKUA": {
+			center: "19.1454370570166,-155.911291480062",
+			zoom: 12
+		},
+		"O_AHU-MOKULEIA TO YOKOHAMA BAY": {
+			center: "21.5434375279999,-158.237931607228",
+			zoom: 12
+		},
+		"KAUA_I-NAWILIWILI": {
+			center: "21.9572431221353,-159.347643764512",
+			zoom: 12
+		},
+		"KAUA_I-NININI PT. TO KAMALA PT.": {
+			center: "21.9206854033513,-159.381059514543",
+			zoom: 12
+		},
+		"HAWAI_I-NORTH KOHALA": {
+			center: "20.256080683051,-155.810410104968",
+			zoom: 12
+		},
+		"KAUA_I-NUMILA TO WAIMEA": {
+			center: "21.9016985908336,-159.61352557726",
+			zoom: 12
+		},
+		"HAWAI_I-OPIHIKAO TO KAU / PUNA": {
+			center: "19.319822338429,-155.048592573008",
+			zoom: 12
+		},
+		"LANA_I-POHAKULOA PT. TO KAIOLOHIA BAY": {
+			center: "20.9223575274215,-156.943999918523",
+			zoom: 12
+		},
+		"MOLOKA_I-POHAKUMAULIULI": {
+			center: "21.1673573401497,-157.257458668815",
+			zoom: 12
+		},
+		"KAUA_I-POIPU": {
+			center: "21.8788462783123,-159.470983233377",
+			zoom: 12
+		},
+		"O_AHU-POKAI BAY TO KAHE POINT": {
+			center: "21.3961875591128,-158.160367450906",
+			zoom: 12
+		},
+		"HAWAI_I-PUNALUU TO HONUAPO / KAU": {
+			center: "19.1375145257592,-155.504558073433",
+			zoom: 12
+		},
+		"MAUI-PUU OLAI TO KAMAOLE BEACH PARK": {
+			center: "20.6360159646548,-156.44672263681",
+			zoom: 12
+		},
+		"HAWAI_I-SOUTH HILO - PUNA": {
+			center: "19.5682273386604,-154.904174760374",
+			zoom: 12
+		},
+		"HAWAI_I-SOUTH KOHALA": {
+			center: "19.946854589013,-155.863796105017",
+			zoom: 12
+		},
+		"O_AHU-SUNSET BEACH TO WAIALUA BAY": {
+			center: "21.6268328405776,-158.073583138325",
+			zoom: 12
+		},
+		"MOLOKA_I-UALAPUE TO KAPUKAULUA": {
+			center: "21.0478202462883,-156.878165730962",
+			zoom: 12
+		},
+		"MAUI-UKUMEHAME BEACH PARK TO LAUNIUPOKO PT.": {
+			center: "20.8103324960672,-156.608347043211",
+			zoom: 12
+		},
+		"O_AHU-WAIALUA BAY TO MOKULEIA": {
+			center: "21.5778229030319,-158.148334325895",
+			zoom: 12
+		},
+		"MAUI-WAIEHU PT. TO KANAHA BEACH PARK": {
+			center: "20.8913190586426,-156.462721761825",
+			zoom: 12
+		},
+		"O_AHU-WAIKIKI": {
+			center: "21.2777920590025,-157.830642575599",
+			zoom: 12
+		},
+		"O_AHU-WAIKIKI TO WAILUPE": {
+			center: "21.261089058987,-157.787993919309",
+			zoom: 12
+		},
+		"HAWAI_I-WAILEA": {
+			center: "19.8821990889528,-155.119295885574",
+			zoom: 12
+		},
+		"KAUA_I-WAILUA TO KAMILO PT.": {
+			center: "22.0459456847179,-159.337870795753",
+			zoom: 12
+		},
+		"O_AHU-WAILUPE TO HANAUMA BAY": {
+			center: "21.2807547465053,-157.737064294262",
+			zoom: 12
+		},
+		"O_AHU-WAIMANALO TO KAILUA": {
+			center: "21.3950984341118,-157.723422075499",
+			zoom: 12
+		},
+		"KAUA_I-WAIMEA TO BARKING SANDS": {
+			center: "21.9712949033984,-159.729355171117",
+			zoom: 12
+		},
+		"HAWAI_I-WAIPIO BAY": {
+			center: "20.1119100579167,-155.595553667268",
+			zoom: 12
+		},
+		"O_AHU-YOKOHAMA BAY TO POKAI BAY": {
+			center: "21.463030527925,-158.212139294704",
+			zoom: 12
+		}
+	},
+	"GU": {
+
+	}
+};

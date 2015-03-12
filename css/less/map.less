@@ -1,0 +1,108 @@
+.map-wrap {
+	display: block;
+	position: relative;
+	padding:1px;
+	border: 1px solid @blue;
+	box-shadow: 0 0 3px 1px fade(@black, 14%);
+}
+.map {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  overflow: hidden;
+}
+.searcharea {
+	height: 40px;
+	padding: 0;
+	margin: 30px 0 10px 0;
+}
+input[type=search] {
+	height: 96%;
+	padding: 0 0 0 25px;
+	background-color: fade(@white, 90%);
+	border-color: @blue;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 2px 0 0 2px;
+	.transition();
+
+	&:focus {
+		background-color: @white;
+		border-color: darken(@blue, 30%);
+		outline: none;
+		.transition();
+		
+	}
+}
+
+input::-webkit-input-placeholder {
+	color: darken(@blueLight, 10%);
+	.transition();
+}
+input:focus::-webkit-input-placeholder {
+	color: darken(@blue, 30%);
+	.transition();
+}
+input:-moz-placeholder { 
+	color: darken(@blueLight, 10%); 
+	.transition(); 
+}
+input:focus:-moz-placeholder { 
+	color: darken(@blue, 30%);
+	.transition();  
+}
+
+input::-moz-placeholder { 
+	color: darken(@blueLight, 10%);
+	.transition();  
+}
+input:focus::-moz-placeholder { 
+	color: darken(@blue, 30%); 
+	.transition(); 
+}
+
+input:-ms-input-placeholder {  
+	color: darken(@blueLight, 10%);
+	.transition();  
+}
+input:focus:-ms-input-placeholder {  
+	color: darken(@blue, 30%);
+	.transition();  
+}
+.leaflet-right {
+	right: 10px !important;
+}
+
+div.aboutmap h3 {
+	display:none;
+}
+/***********************************************************************
+Responsive Media Queries
+***********************************************************************/
+@media (min-width: @device-tablet-lg) and (max-width: @device-desktop) {
+	input[type=search] {
+		width: 70%;
+	}
+}
+@media (min-width: @device-tablet) and (max-width: @device-tablet-lg) {
+	input[type=search] {
+		width: 55%;
+	}
+}
+@media (min-width: @device-phone) and (min-width: @device-tablet) {
+	input[type=search] {
+		width: 57%;
+	}
+}
+@media (max-width: @device-phone) {
+	.map-wrap {
+		margin: 0;
+		height: 353px;
+		overflow: hidden;
+	}
+	input[type=search] {
+		width: 57%;
+	}
+}

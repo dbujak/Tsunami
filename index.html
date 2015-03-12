@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="myApp" id="ng-app"> <!--<![endif]-->
+    <head>
+
+        <!--[if lte IE 7]>
+          <script src="/js/lib/json3.min.js"></script>
+        <![endif]-->
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Tsunami Evacuation Map</title>
+
+        <meta name="description" content="Tsunami Hazard Map">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <!-- iOS - mobile web app -->
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <!-- iOS - add specific name to home screen icon -->
+        <meta name="apple-mobile-web-app-title" content="Tsunami Evacuation Map">
+        <!-- Android - mobile web app-->
+        <meta name="mobile-web-app-capable" content="yes" />
+        <!-- Windows mobile Phone specific -->
+        <meta name="MobileOptimized" content="width">
+        <!-- Windows task bar - Name a pinned site on Windows task bar -->
+        <meta name="application-name" content="Tsunami Evacuation Map">
+        <!-- Windows task bar - give pinned site a tooltip -->
+        <meta name="msapplication-tooltip" content="Tsunami Evaucuation Map for Hawaii and Guam">
+        <!-- Windows task bar - set default page for pinned site -->
+        <meta name="msapplication-starturl" content="http://tsunami.coast.noaa.gov/index.html?pinned=true">
+        <!-- Windows task bar - Recolor IE's controls manually for a Pinned Site -->
+        <meta name="msapplication-navbutton-color" content="#ff0000">
+        <!-- Blackberry specific -->
+        <meta name="HandheldFriendly" content="true">
+        <!-- Disable implicit prefetching -->
+        <meta http-equiv="x-dns-prefetch-control" content="off">
+        <!-- Facebook - controls the information sent to Open Graph when shared -->
+        <meta property="og:title" content="Tsunami Evacuation Map">
+        <meta property="og:description" content="Tsunami Evaucuation Map for Hawaii and Guam">
+        <meta property="og:image" content="">
+        <!-- Twitter - controls the information sent to Twitter when shared -->
+        <meta name="twitter:card" content="Tsunami Hazard Map">
+        <!-- 
+        <meta name="twitter:site" content="@site_account">
+        <meta name="twitter:creator" content="@individual_account"> -->
+        <meta name="twitter:url" content="http://tsunami.coast.noaa.gov/">
+        <meta name="twitter:title" content="Tsunami Evacuation Map">
+        <meta name="twitter:description" content="Tsunami Evaucuation Map for Hawaii and Guam">
+        <!-- <meta name="twitter:image" content="http://www.example.com/path/to/image.jpg"> -->
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="icon" type="image/png" href="favicon.png">
+
+        <!-- iOS specific tags -->
+        <!-- <link rel="apple-touch-icon-precomposed" sizes="57x57" href="apple-touch-icon-57x57-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="apple-touch-icon-76x76-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="apple-touch-icon-120x120-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="apple-touch-icon-144x144-precomposed.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="apple-touch-icon-152x152-precomposed.png" /> -->
+
+        <!-- Add start up image for iOS -->
+        <!-- <link rel="apple-touch-startup-image" href="/startup.png"> -->
+
+        <!-- Android specific tags -->
+        <!--     <link rel="shortcut icon" sizes="196x196" href="nice-highres.png">
+        <link rel="shortcut icon" sizes="128x128" href="niceicon.png"> -->
+
+        <!-- Direct search spiders to site map if applicable -->
+        <!--  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml"> -->
+
+        <!-- Application CSS file -->
+        <link rel="stylesheet" href="css/tsunami.min.css?rel=1425930089496">     
+
+        <!-- Google Analytics -->
+        <!-- <script type="text/javascript" src="https://coast.noaa.gov/js/federated-analytics.js"></script> -->
+        
+        <script type="text/javascript" src="./js/center-angularlitics.js"></script>
+
+    </head>
+
+    <body>
+        <!--[if lt IE 8]>
+            <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="page-wrap fade-in" ng-controller="MainCtrl" >
+            <a id="pageTop" href=""></a>
+            <header class="page-header">
+
+                <div class="content-wrap fade-in">
+
+                    <h1 class="brand-container inline float-left">
+                        <em>{{strings[params.lang].page_title}}</em> <span>{{strings[params.lang]['region_name_'+params.region]}}</span>
+                    </h1>
+                    
+                <!-- Main Nav -->
+                    <nav class="nav-main float-right hidden-tablet-lg" role="navigation">
+                        <a href="#skip" class="offscreen">Skip Navigation</a>
+                    
+                        <div ng-repeat="page in contents.pages" class="nav-item">
+                            <a ng-click="mainNav(page)" class="btn-main" title="{{strings[params.lang]['page_btn_' + page]}}" accesskey="{{1 + $index}}" ng-class="{'active': params.page == page}">{{strings[params.lang]['page_btn_' + page]}}</a>
+                        </div>
+
+                       <!--  <div class="nav-item hidden-phone">
+                            <div class="dropdown-group">
+                                <button class="btn-main btn-dropdown" ng-click="dropdown=(dropdown!='lang'?'lang':null)"  hide-onclickout>{{strings[params.lang].language_select}}</button>
+                                <ul class="dropdown" ng-class="{'open': dropdown == 'lang', 'close': dropdown != 'lang'}" hide-onclickout="dropdown = null">
+                                    <li ng-repeat="lang in regions[params.region].languages" ng-class="{'active': params.lang == lang}" ng-click="applyLang(lang); $parent.dropdown = null;">{{strings[lang].language}}</li>
+                                </ul>
+                            </div>
+                        </div> -->
+
+                        <div class="nav-item hidden-phone">
+                            <div class="dropdown-group">
+                                <button class="btn-main btn-dropdown" ng-click="dropdown=(dropdown!='share'?'share':null); prepareShare();" hide-onclickout>{{strings[params.lang].share_me}}</button>
+                                <ul class="dropdown" ng-class="{'open': dropdown == 'share', 'close': dropdown != 'share'}" hide-onclickout="dropdown = null">
+                                    <li><a href="http://www.facebook.com/sharer/sharer.php?u={{shareLinkEncoded}}" title="Share on Facebook" target="_blank" ng-click="dropdown = null">Facebook</a></li>
+                                    <li><a href="http://twitter.com/intent/tweet?text={{shareTextEncoded}}.%20%20Link:%20{{shareLinkEncoded}}" title="Tweet this Link" target="_blank" ng-click="dropdown = null">Twitter</a></li>
+                                    <li><a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{shareLinkEncoded}}" title="Share on LinkedIn" target="_blank" ng-click="dropdown = null">LinkedIn</a></li>
+                                    <li><a href="{{shareLink}}" title="Right Click to Copy" target="_blank" ng-click="dropdown = null">Link</a></li>
+                                </ul>
+                            </div>
+                        </div><!-- /nav-item -->
+                    </nav>
+
+                </div><!-- /content-wrap -->
+            </header>
+
+        <!-- Mobile Site Navigation -->
+                <button title="Open Main Nav" class="mobile-main-nav-toggle" ng-click="mobileNav = !mobileNav">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <nav class="main-navigation-mobile" role="navigation" ng-class="{'open': mobileNav == true}">
+                    <a href="#skip" class="offscreen">Skip Navigation</a>
+                    <ul class="nav-main-mobile">
+                        <li ng-repeat="page in contents.pages">
+                            <a ng-click="mainNav(page)" title="{{strings[params.lang]['page_btn_' + page]}}" accesskey="{{1 + $index}}" ng-class="{'active': params.page == page}">{{strings[params.lang]['page_btn_' + page]}}</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Mobile Language Select -->
+                <button title="Select a Language" class="mobile-language-toggle" ng-click="mobileLanguageToggle = !mobileLanguageToggle"></button>
+
+                <div class="main-navigation-mobile" ng-class="{'open': mobileLanguageToggle == true}">
+                    <ul class="nav-main-mobile">
+                        <li ng-repeat="lang in regions[params.region].languages" ng-class="{'active': params.lang == lang}" ng-click="applyLang(lang); $parent.dropdown = null;">{{strings[lang].language}}</li>
+                    </ul>
+                </div>
+
+
+<!-- Main Content -->
+            <div class="content-wrap fade-in">
+
+                <div id="evacmap" class="container map-container" ng-show="params.page == 'map'">
+
+<!-- Map and Location Search -->
+                    <section  role="application">
+
+                         <div class="col-left float-left">
+
+                            <!-- Search Bar -->
+                            <div class="searcharea" role="search">
+
+                                 <label class="skip-reader">Enter a location </label>
+                                 <input id="pac-input"  type="search" class="latlong float-left" placeholder="{{strings[params.lang].search_placeholder}}" class="latlong" ng-keypress="geocodeEnter($event)" ng-model="indexModel.address">
+                                 <!-- <input id="geocodeInput" type="search" placeholder="{{strings[params.lang].search_placeholder}}" class="latlong float-left" ng-model="latlong" ng-keypress="geocodeEnter($event)" > -->
+
+                                 <button type="button" value="{{strings[params.lang].search_go}}" id="go-btn" class="geolocate-btn btn-search float-left submit-btn"  ng-click="geocode()">{{strings[params.lang].search_go}}</button>
+
+                                 <button ng-repeat="region in regions.regions" type="button" class="btn-search float-right btn-location hidden-phone" value="{{strings[params.lang].jump_to}}{{region.name}}" ng-click="switchRegion(region.abbr)" ng-class="{'active': params.region == region.abbr}">{{strings[params.lang]['region_name_' + region.abbr]}}</button>
+
+                             </div>
+
+                            <!-- Map -->
+                            <div class="map-wrap">
+                                 <div id="map" class="map"></div><!-- /map -->
+                            </div>   
+
+                        </div><!-- /col-left -->
+
+                    </section><!-- /application -->
+
+<!-- Things to Know  -->
+                    <section class="full-height" role="article">
+
+                        <div class="col-right float-left" ng-class="{'open': mobileMapInfo == true}">
+
+                        <!-- Mobile Info Toggle -->
+                            <a title="View the Info window" class="mobile-nav-toggle map-info-toggle" ng-click="mobileMapInfo = !mobileMapInfo">
+                                <span>i</span>
+                            </a>
+
+                            <div ng-include="contents.thingstoknow">
+                                <div class="fade-bottom"></div>
+                            </div>
+                            
+                          
+                        </div><!-- /col-right -->
+
+                    </section><!-- /article -->
+
+                    <section rol="information">
+
+                        <div class="col-left float-left">
+                            <div ng-include="contents.aboutmap"></div>
+                        </div>
+
+                        <div class="col-right float-left">
+                            <div class="well info-well">
+                                <h5 class="text-centered">For real-time information visit</h5>
+                                <p>
+                                <a href="http://ptwc.weather.gov/" target="_blank">NOAA Pacific Tsunami Warning Center</a>
+                                </p>
+                            </div>
+                        </div>
+                    
+                    </section>
+
+                    <div class="clearfix"></div>
+
+                </div><!-- /evacmap -->
+
+            </div><!-- /content-wrap -->
+
+<!-- Tsunami Info Pages -->
+            <div id="sushiinfo" ng-show="params.page == 'info'" class="fade-in">
+
+                <div class="container info-content">
+
+                <!-- Tsunami Info Nav -->
+                    <nav class="info-nav affix" role="navigation" ng-class="{'open': mobileInfoNav == true}">
+
+                        <!-- Mobile nav toggle -->
+                         <a title="View the Tsunami Info Nav" class="mobile-tsunami-info-toggle" ng-click="mobileInfoNav = !mobileInfoNav">
+                            <span>i</span>
+                        </a>
+
+                        <a href="#skip" class="offscreen">Skip navigation</a>
+                        <ul class="nav">
+                            <li>
+                                <h4>{{strings[params.lang]['page_btn_info']}}</h4>
+                            </li>
+                            <li ng-repeat="tab in contents.infotabs" class="nav-item">
+                                <span class="nav-indicator"></span>
+                                <a ng-click="tsunamiInfoNav(tab)" title="{{strings[params.lang]['infotab_' + tab]}}" accesskey="{{5 + $index}}" ng-class="{'active': params.infotab == tab}">{{strings[params.lang]['infotab_' + tab]}}</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div ng-repeat="tab in contents.infotabs" ng-include="contents[tab]" ng-show="params.infotab == tab" class="info-container fade-in"></div>
+
+                </div><!-- /container -->
+
+            </div><!-- /sushiinfo -->
+
+            <div class="clearfix"></div>
+
+        </div><!-- /page-wrap -->
+
+<!-- Site Footer -->
+
+        <footer class="site-footer" >
+
+            <div class="content-wrap"> 
+
+                <div class="float-left">  
+                    <h5>About this Site</h5>      
+                    <p>This site has been developed by the <a href="http://www.tsunami.noaa.gov/" title="Go to tsunami.noaa.gov" Target="_blank">National Oceanic and Atmospheric Administration</a> (NOAA) in partnership with the State of Hawai'i.</p>
+                    <p><a href="mailto:psc@noaa.gov?subject=Feedback from Tsunami" title="Email Feedback" target="_blank">For feedback, contact the NOAA Office for Coastal Management - Pacific Islands</a></p>
+                    <p><a href="http://coast.noaa.gov/PrivacyPolicy/privacyPolicy.html" title="Privacy Policy" target="_blank">Privacy Policy</a></p>
+                    <p><a href="javascript:alert('The data and maps in this tool illustrate the scale of potential inundation from a hypothetical tsunami, not the exact location, and do not account for all physical or anthropogenic processes. The data and maps in this tool are provided “as is,” without warranty to their performance, merchantable state, or fitness for any particular purpose. The entire risk associated with the results and performance of these data is assumed by the user. This tool should be used strictly as an evacuation planning reference tool and not for navigation, permitting, or other legal purposes.');" >Disclaimer</a>
+                    </p>
+                </div>
+
+                <div class="float-right col">
+                    
+                    <div class="float-right img-noaa-logo footer-brand">
+                        <a href="http://noaa.gov" title="Go to noaa.gov" target="_blank">
+                            <img src="img/tsunami-sprite.png" alt="NOAA logo">
+                        </a>
+                    </div>
+                    <div class="float-right footer-brand">
+                        <a href="http://www.scd.hawaii.gov/" title="Go to State of Hawaii site" target="_blank">
+                            <img src="img/hawaii-seal.gif" alt="Seal of the State of Hawaii" width="65" height="65">
+                        </a>
+                    </div>
+                    <div class="float-right img-thmp-logo footer-brand">       
+                        <a href="http://nws.weather.gov/nthmp/" title="Go to Tsunami Hazard Mitigation Program website" target="_blank">
+                            <img src="img/tsunami-sprite.png" alt="Tsunami Hazard Mitigation Program Logo">
+                        </a>
+                    </div>
+                    <div class="float-right img-primo-logo footer-brand">
+                        <a href="http://collaborate.coast.noaa.gov/PRiMO/Pages/index.aspx" title="Go to Primo website" target="_blank">
+                            <img src="img/tsunami-sprite.png" alt="Primo Logo">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </footer>
+
+        <!-- App Scripts Compiled -->
+        <script src="./js/tsunami.js?rel=1425930089496"></script>
+        
+        <!-- Google Maps -->
+        <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false&amp;libraries=places'></script>
+
+       
+        <!-- HTML5 Polyfil to help screen readers with HTML5 elements https://github.com/yatil/accessifyhtml5.js -->
+        <script>AccessifyHTML5();</script>
+        <script src="./js/angulartics.js"></script>
+        <script src="./js/angulartics-google-analytics.js"></script>
+
+    </body>
+</html>

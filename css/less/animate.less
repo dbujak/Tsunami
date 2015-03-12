@@ -1,0 +1,56 @@
+/************************************
+Fade In
+************************************/
+@-webkit-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-in {
+	//Call the keyframe animation
+	-webkit-animation: fade-in; /* Safari 4+ */
+	-moz-animation:    fade-in; /* Fx 5+ */
+	-o-animation:      fade-in; /* Opera 12+ */
+	animation:         fade-in; /* IE 10+ */
+
+	// Set animation duration
+	-webkit-animation-duration: 1s;
+	-moz-animation-duration: 1s;
+	-o-animation-duration: 1s;
+	animation-duration: 1s;
+
+	// Set animation iteration count 1-infinite
+	-webkit-animation-iteration-count: 1;
+	-moz-animation-iteration-count: 1;
+	-o-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+
+	// Set timing function
+	-webkit-animation-timing-function: ease-in-out;
+	-moz-animation-timing-function: ease-in-out;
+	-o-animation-timing-function: ease-in-out;
+	animation-timing-function: ease-in-out;
+}
+
+/**********************************************************
+Transiitons
+***********************************************************/
+.transition(@transSpec: all .25s ease-in-out) {
+	-webkit-transition: @transSpec;
+	-moz-transition: @transSpec;
+	-ms-transition: @transSpec;
+	-o-transition: @transSpec;
+	transition: @transSpec;
+}

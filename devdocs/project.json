@@ -1,0 +1,12 @@
+{
+"name":"Tsunami Aware",
+"status":"active",
+"webdev":"http://webdev.coast.noaa.gov/tsunami-toolv2/",
+"webqa":"http://webqa.coast.noaa.gov/tsunami-toolv2/",
+"reef":null,
+"svn":"https://csc-s-internals.nos.noaa/svn/TsunamiTool/trunk/tsunami_toolv2",
+"jira":"http://feedback.coast.noaa.gov/browse/TIS",
+"dataservices":[],
+"mapservices":[],
+"staff":["Adam Stein","Jennifer Halleran","Yanlin Ye", "Keith Forsythe"]
+}

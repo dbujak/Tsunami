@@ -1,0 +1,29 @@
+.bottom-slide-panel {
+	display: block;
+	position: absolute;
+	background-color: fade(@white, 90%);
+	padding: 20px 40px;
+	z-index: 1010;
+	.transition();
+
+	&.open {
+		bottom: 0px;
+		.transition();
+	}
+
+	&.close {
+		bottom: -196px;
+		.transition();
+	}
+}
+.slide-panel-toggle {
+	display: block;
+	position: relative;
+	width: 130px;
+	height: 35px;
+	background-color: fade(@white, 90%);
+	margin-top: -55px;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+}

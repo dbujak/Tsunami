@@ -1,0 +1,151 @@
+.info-container {
+	margin:0 auto;
+	max-width: 685px;
+}
+.info-content {
+	background-color: darken(@white, 3%);
+	display: block;
+	position: relative;
+	padding: 44px 0 175px 0;
+}
+.info-nav {
+	left: 85px;
+	top: 153px;
+	width: 220px;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.12);
+}
+.well {
+	display: block;
+	position: relative;
+	background-color: @white;
+	border-width: 1px;
+	border-style: solid;
+	border-color: @grayLight;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 0 1px #fff, inset 0 0 3px 1px fade(@black, 10%);
+
+	&.info-well {
+		background-color: darken(@blueLight, 4%);
+		border: 1px solid @blue;
+		box-shadow: 0 0 3px 1px fade(@black, 8%);
+		border-radius: 0;
+		margin-top: -15px;
+		 h5 {
+		 	background-color: @blue;
+		 	margin: -20px -20px 0 -20px;
+		 	padding: 10px;
+		 }
+		 a{
+		 	color: @black;
+		 }
+	}
+}
+hr {
+	border: 0;
+	height: 1px;
+	background-color: @grayLight;
+	.gradient-right();
+	clear: both;
+}
+.col{
+	display: block;
+	position: relative;
+	width: 48%;
+}
+.disaster-kits {
+	h3 {
+		margin: 0 -20px 20px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid @grayLight;
+	}
+	.prepare-cover {
+		text-align: center;
+
+		img {
+			border: 1px solid @gray;
+			box-shadow: 0 0 20px 1px fade(@black, 12%);
+		}
+	}
+}
+
+/***********************************************************************
+Responsive Media Queries
+***********************************************************************/
+@media (max-width: 1300px) {
+	.info-nav {
+		left: 15px;
+	}
+}
+@media (max-width: 1175px) {
+		.info-content{
+			padding: 10px;
+
+			.info-nav {
+			left: -220px;
+			top: 119px;
+			z-index: 100;
+			.transition();
+
+			&.open {
+				left: 0;
+				.transition();
+			}
+		}
+	}
+}
+@media only screen and (min-width: @device-tablet) and (max-width: @device-tablet-lg) {
+	.info-container {
+		margin-left: 0;
+		padding: 0 50px;
+		max-width: 100%;
+	}
+}
+
+@media (max-width: @device-tablet) {
+		.info-content{
+			padding: 10px;
+
+			.info-nav {
+			left: -220px;
+			top: 119px;
+			z-index: 100;
+			.transition();
+
+			&.open {
+				left: 0;
+				.transition();
+			}
+		}
+	}
+	
+	.info-container {
+		margin-left: 0;
+		padding: 0 50px;
+		max-width: 100%;
+	}
+}
+
+
+@media (max-width: @device-phone) {
+	.info-content{
+		padding: 10px;
+
+			.info-nav {
+			left: -220px;
+			top: 77px;
+			z-index: 100;
+			.transition();
+
+			&.open {
+				left: 0;
+				.transition();
+			}
+		}
+	}
+	.info-container {
+		margin: 0 auto;
+		padding: 0;
+		max-width: 100%;
+	}
+}
